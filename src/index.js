@@ -19,14 +19,21 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
 
       componentDidMount() {
         this.__react_pos.contentDocument.defaultView.addEventListener('resize', this.resizeListener);
-
-        this.setState({
-          container: getContainer(this),
-        });
+        setTimeout(() => {
+          this.setState({
+            container: getContainer(this),
+          });
+        }, 10);
       }
 
       componentWillUnmount() {
         this.__react_pos.contentDocument.defaultView.removeEventListener('resize', this.resizeListener);
+      }
+
+      onResize() {
+        this.setState({
+          container: getContainer(this),
+        });
       }
 
       getWindow() {
@@ -35,7 +42,7 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
 
       requestFrame(fn) {
         const window = this.getWindow();
-        const raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function (cb) {
+        const raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function callback(cb) {
           return window.setTimeout(cb, 20);
         };
         return raf(fn);
@@ -56,12 +63,6 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
         });
       }
 
-      onResize() {
-        this.setState({
-          container: getContainer(this),
-        });
-      }
-
       render() {
         return (
           <span>
@@ -70,8 +71,16 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
               ref={(__hoc) => { this.__react_pos = __hoc; }}
               data="about:blank"
               className="react-pos"
-              style={{display: 'block', position: 'absolute', top: 0, left: 0, height: '100%', width: '100%', overflow: 'hidden', pointerEvents: 'none', zIndex: -1}}
-              />
+              style={{
+                display: 'block',
+                position: 'absolute',
+                top: 0, left: 0, height: '100%', width: '100%',
+                overflow: 'hidden',
+                pointerEvents: 'none',
+                zIndex: -1,
+                visibility: 'hidden',
+              }}
+            />
           </span>
         );
       }

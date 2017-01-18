@@ -9,7 +9,7 @@ const ComponentToWrapp = () => {
   );
 };
 
-class ComponentToWrapp2 extends React.Component {
+class ComponentToWrapp extends React.Component {
   render() {
     return (
       <div style={{width: 100, height: 100}}></div>

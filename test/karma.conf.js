@@ -14,7 +14,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'test/specs/*.js', included: true, watched: false },
+      { pattern: 'test/specs/*.js', included: true, watched: process.env.TRAVIS ? false : true },
     ],
 
     // list of files to exclude

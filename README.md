@@ -5,7 +5,7 @@ HoC for detecting changes of an element and return the new dimensions
 Install the package from [npm](https://npmjs.com/release)
 
 ```bash
-npm install --save extract.js
+npm install --save react-pos
 ```
 
 ## Usage
@@ -13,8 +13,8 @@ npm install --save extract.js
 ### Basic Example
 
 ```js
-import React, {Component} from 'react';
-import {render} from 'react-dom';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import extract from 'react-pos';
 
 const InnerContainer = reactPos()(({container}) => {
@@ -40,10 +40,6 @@ class App extends Component {
 render(<App/>, document.getElementById('app'));
 
 ```
-
-## TODO
-* Better documentation
-* Full test coverage
 
 ## License
 

@@ -66,14 +66,13 @@ module.exports = function (config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'istanbul-instrumenter-loader',
-      'karma-coveralls'
     ],
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage', 'coveralls'],
+    reporters: ['progress', 'coverage'],
 
     coverageReporter: {
       dir: 'test',

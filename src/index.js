@@ -18,16 +18,16 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
       }
 
       componentDidMount() {
-        this.__react_pos.contentDocument.defaultView.addEventListener('resize', this.resizeListener);
+        this.__react_pos.ownerDocument.defaultView.addEventListener('resize', this.resizeListener);
         setTimeout(() => {
-          this.setState({
-            container: getContainer(this),
-          });
+        this.setState({
+          container: getContainer(this),
+        });
         }, 10);
       }
 
       componentWillUnmount() {
-        this.__react_pos.contentDocument.defaultView.removeEventListener('resize', this.resizeListener);
+        this.__react_pos.ownerDocument.defaultView.removeEventListener('resize', this.resizeListener);
       }
 
       onResize() {
@@ -65,7 +65,7 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
 
       render() {
         return (
-          <span>
+          <div className="react_pos-wrapper">
             {(this.state.container) && <DecoratedComponent {...this.props} {...this.state} />}
             <object
               ref={(__hoc) => { this.__react_pos = __hoc; }}
@@ -81,7 +81,7 @@ const ReactPos = ({ getContainer = defaultGetContainer } = {}) => {
                 visibility: 'hidden',
               }}
             />
-          </span>
+          </div>
         );
       }
     }

@@ -8,7 +8,6 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '../',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'chai'],
@@ -17,7 +16,6 @@ module.exports = function (config) {
     files: [
       { pattern: 'test/specs/*.js', included: true, watched: false },
     ],
-
 
     // list of files to exclude
     exclude: [
@@ -50,9 +48,14 @@ module.exports = function (config) {
           include: /src/,
           loader: 'istanbul-instrumenter'
         }]
+      },
+      externals: {
+        cheerio: 'window',
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true
       }
     },
-
 
     plugins: [
       'karma-webpack',

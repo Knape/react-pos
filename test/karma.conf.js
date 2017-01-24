@@ -1,8 +1,7 @@
 // Karma configuration
 // Generated on Wed Mar 18 2015 11:41:18 GMT+0800 (CST)
-'use strict';
 
-module.exports = function (config) {
+module.exports = (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,7 +13,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'test/specs/*.js', included: true, watched: process.env.TRAVIS ? false : true },
+      { pattern: 'test/specs/*.js', included: true, watched: !process.env.TRAVIS },
     ],
 
     // list of files to exclude
@@ -23,7 +22,6 @@ module.exports = function (config) {
       'lib/**',
       'node_modules/'
     ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -68,11 +66,10 @@ module.exports = function (config) {
       'istanbul-instrumenter-loader',
     ],
 
-
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: process.env.TRAVIS ? [] : ['progress', 'coverage'],
 
     coverageReporter: {
       dir: 'test',
@@ -101,7 +98,7 @@ module.exports = function (config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: process.env.TRAVIS ? false : true,
+    autoWatch: true,
 
 
     // start these browsers
@@ -112,6 +109,6 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: process.env.TRAVIS ? false : true,
+    singleRun: !process.env.TRAVIS,
   });
 };

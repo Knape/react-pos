@@ -23,7 +23,7 @@ import { mount } from 'enzyme';
 
 
   describe('ReactPos', () => {
-    it('Should give correct container widht and eight for fixed values', (next) => {
+    it('Should give correct container widht and eight for fixed values', (done) => {
       const TestPos = reactPos()(({container}) => {
         const { bottom, height, left, right, top, width } = container;
         const stringContainer = JSON.stringify({
@@ -39,7 +39,7 @@ import { mount } from 'enzyme';
         const container = wrapper.find('.react_pos-wrapper').children().first().props().container;
         const width = window.innerWidth - 400;
         expect(container.width).to.eql(width);
-        next();
+        done();
       }, 1000);
     });
   });

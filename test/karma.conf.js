@@ -103,12 +103,12 @@ module.exports = (config) => {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [process.env.TRAVIS ? 'Firefox' : 'Firefox'],
+    browsers: ['Firefox'],
 
     browserNoActivityTimeout: 60000,
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: !process.env.TRAVIS,
+    singleRun: process.env.TRAVIS,
   });
 };
